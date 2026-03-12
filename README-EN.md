@@ -4,7 +4,8 @@
 
 <a href="https://trendshift.io/repositories/16144" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16144" alt="666ghj%2FMiroFish | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-简洁通用的群体智能引擎，预测万物
+
+Un moteur d'intelligence collective simple et universel qui prédit tout.
 </br>
 <em>A Simple and Universal Swarm Intelligence Engine, Predicting Anything</em>
 
@@ -26,23 +27,23 @@
 
 ## ⚡ Overview
 
-**MiroFish** is a next-generation AI prediction engine powered by multi-agent technology. By extracting seed information from the real world (such as breaking news, policy drafts, or financial signals), it automatically constructs a high-fidelity parallel digital world. Within this space, thousands of intelligent agents with independent personalities, long-term memory, and behavioral logic freely interact and undergo social evolution. You can inject variables dynamically from a "God's-eye view" to precisely deduce future trajectories — **rehearse the future in a digital sandbox, and win decisions after countless simulations**.
+**FisherForceAI** est un moteur de prédiction IA de nouvelle génération, basé sur la technologie multi-agents. En extrayant des informations initiales du monde réel (actualités, projets de politiques ou signaux financiers, par exemple), il construit automatiquement un monde numérique parallèle haute fidélité. Dans cet espace, des milliers d'agents intelligents, dotés de personnalités, de mémoires à long terme et de logiques comportementales propres, interagissent librement et évoluent socialement. Vous pouvez injecter des variables de manière dynamique, à partir d'une vision globale, afin de déduire avec précision les trajectoires futures. — **rehearse the future in a digital sandbox, and win decisions after countless simulations**.
 
-> You only need to: Upload seed materials (data analysis reports or interesting novel stories) and describe your prediction requirements in natural language</br>
-> MiroFish will return: A detailed prediction report and a deeply interactive high-fidelity digital world
+>Il vous suffit de : télécharger des éléments de départ (rapports d’analyse de données ou nouvelles intéressantes) et de décrire vos besoins en matière de prédiction en langage naturel.</br>
+>FisherForceAI sera de retour : un rapport de prédiction détaillé et un monde numérique haute fidélité profondément interactif.
 
 ### Our Vision
 
-MiroFish is dedicated to creating a swarm intelligence mirror that maps reality. By capturing the collective emergence triggered by individual interactions, we break through the limitations of traditional prediction:
+FisherForceAI se consacre à la création d'un miroir d'intelligence collective qui cartographie la réalité. En capturant l'émergence collective déclenchée par les interactions individuelles, nous dépassons les limites de la prédiction traditionnelle:
 
-- **At the Macro Level**: We are a rehearsal laboratory for decision-makers, allowing policies and public relations to be tested at zero risk
-- **At the Micro Level**: We are a creative sandbox for individual users — whether deducing novel endings or exploring imaginative scenarios, everything can be fun, playful, and accessible
+- **At the Macro Level**: Nous sommes un laboratoire d'expérimentation pour les décideurs, permettant de tester les politiques et les relations publiques sans aucun risque.
+- **At the Micro Level**:Nous sommes un terrain de jeu créatif pour les utilisateurs individuels — qu'il s'agisse de déduire des fins originales ou d'explorer des scénarios imaginatifs, tout peut être amusant, ludique et accessible.
 
-From serious predictions to playful simulations, we let every "what if" see its outcome, making it possible to predict anything.
+Des prédictions sérieuses aux simulations ludiques, nous explorons toutes les hypothèses et leurs conséquences, rendant possible toute prédiction.
 
 ## 🌐 Live Demo
 
-Welcome to visit our online demo environment and experience a prediction simulation on trending public opinion events we've prepared for you: [mirofish-live-demo](https://666ghj.github.io/mirofish-demo/)
+Bienvenue dans notre environnement de démonstration en ligne ! Découvrez une simulation de prédiction des événements d'opinion publique les plus en vogue que nous avons préparée pour vous: [mirofish-live-demo](https://666ghj.github.io/mirofish-demo/)
 
 ## 📸 Screenshots
 
@@ -78,18 +79,19 @@ Click the image to watch the complete demo video for prediction using BettaFish-
 <div align="center">
 <a href="https://www.bilibili.com/video/BV1cPk3BBExq" target="_blank"><img src="./static/image/红楼梦模拟推演封面.jpg" alt="MiroFish Demo Video" width="75%"/></a>
 
-Click the image to watch MiroFish's deep prediction of the lost ending based on hundreds of thousands of words from the first 80 chapters of "Dream of the Red Chamber"
+Cliquez sur l'image pour découvrir la prédiction détaillée de FisherForceAI concernant la fin alternative, basée sur des centaines de milliers de mots extraits des 80 premiers chapitres du « Rêve du Pavillon Rouge ."
+
 </div>
 
 > **Financial Prediction**, **Political News Prediction** and more examples coming soon...
 
 ## 🔄 Workflow
 
-1. **Graph Building**: Seed extraction & Individual/collective memory injection & GraphRAG construction
-2. **Environment Setup**: Entity relationship extraction & Persona generation & Agent configuration injection
-3. **Simulation**: Dual-platform parallel simulation & Auto-parse prediction requirements & Dynamic temporal memory updates
-4. **Report Generation**: ReportAgent with rich toolset for deep interaction with post-simulation environment
-5. **Deep Interaction**: Chat with any agent in the simulated world & Interact with ReportAgent
+1. **Graph Building**:Extraction de graines, injection de mémoire individuelle/collective et construction de GraphRAG
+2. **Environment Setup**: Extraction des relations entre entités, génération de personas et injection de configuration d'agent
+3. **Simulation**: Simulation parallèle biplateforme, analyse automatique des exigences de prédiction et mises à jour dynamiques de la  mémoire temporelle
+4. **Report Generation**: ReportAgent doté d'un ensemble d'outils complet pour une interaction approfondie avec l'environnement post-simulation
+5. **Deep Interaction**: Discutez avec n'importe quel agent du monde simulé et interagissez avec ReportAgent.
 
 ## 🚀 Quick Start
 
