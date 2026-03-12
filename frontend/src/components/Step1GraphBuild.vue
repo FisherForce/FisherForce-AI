@@ -164,9 +164,8 @@ La construction de la carte est terminée. Veuillez passer à l'étape suivante 
             :disabled="currentPhase < 2 || creatingSimulation"
             @click="handleEnterEnvSetup"
           >
-            <span v-if="creatingSimulation" class="spinner-sm"></span>
-            {{ creatingSimulation ? 'Création...' : '
-Entrez dans la configuration de l'environnement ➝' }}
+             <span v-if="creatingSimulation" class="spinner-sm"></span>
+               {{ creatingSimulation ? "Création..." : "Entrez dans la configuration de l'environnement ➝" }}
           </button>
         </div>
       </div>
