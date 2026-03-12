@@ -5,25 +5,24 @@
       <div class="header-left">
         <div class="brand" @click="router.push('/')">FisherForceAI</div>
       </div>
-      
+     
       <div class="header-center">
         <div class="view-switcher">
-          <button 
-            v-for="mode in ['graph', 'split', 'workbench']" 
+          <button
+            v-for="mode in ['graph', 'split', 'workbench']"
             :key="mode"
             class="switch-btn"
             :class="{ active: viewMode === mode }"
             @click="viewMode = mode"
           >
-            {{ { graph: '图谱', split: '双栏', workbench: '工作台' }[mode] }}
+            {{ { graph: 'Graphe', split: 'Vue double', workbench: 'Workbench' }[mode] }}
           </button>
         </div>
       </div>
-
       <div class="header-right">
         <div class="workflow-step">
-          <span class="step-num">Step 2/5</span>
-          <span class="step-name">环境搭建</span>
+          <span class="step-num">Step 3/5</span>
+          <span class="step-name">Lancement de la simulation</span>
         </div>
         <div class="step-divider"></div>
         <span class="status-indicator" :class="statusClass">
@@ -32,24 +31,25 @@
         </span>
       </div>
     </header>
-
     <!-- Main Content Area -->
     <main class="content-area">
       <!-- Left Panel: Graph -->
       <div class="panel-wrapper left" :style="leftPanelStyle">
-        <GraphPanel 
+        <GraphPanel
           :graphData="graphData"
           :loading="graphLoading"
-          :currentPhase="2"
+          :currentPhase="3"
+          :isSimulating="isSimulating"
           @refresh="refreshGraph"
           @toggle-maximize="toggleMaximize('graph')"
         />
       </div>
-
-      <!-- Right Panel: Step2 环境搭建 -->
+      <!-- Right Panel: Step3 Lancement de la simulation -->
       <div class="panel-wrapper right" :style="rightPanelStyle">
-        <Step2EnvSetup
+        <Step3Simulation
           :simulationId="currentSimulationId"
+          :maxRounds="maxRounds"
+          :minutesPerRound="minutesPerRound"
           :projectData="projectData"
           :graphData="graphData"
           :systemLogs="systemLogs"
