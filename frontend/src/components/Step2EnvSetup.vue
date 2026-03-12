@@ -1,7 +1,7 @@
 <template>
   <div class="env-setup-panel">
     <div class="scroll-container">
-      <!-- Step 01: 模拟实例 -->
+      <!-- Step 01: Instance de simulation -->
       <div class="step-card" :class="{ 'active': phase === 0, 'completed': phase > 0 }">
         <div class="card-header">
           <div class="step-info">
@@ -13,13 +13,12 @@
             <span v-else class="badge processing">initialisation</span>
           </div>
         </div>
-        
+       
         <div class="card-content">
           <p class="api-note">POST /api/simulation/create</p>
           <p class="description">
             Créez une nouvelle instance de simulation et récupérez le modèle de paramètres du monde de simulation.
           </p>
-
           <div v-if="simulationId" class="info-card">
             <div class="info-row">
               <span class="info-label">Project ID</span>
@@ -41,7 +40,7 @@
         </div>
       </div>
 
-      <!-- Step 02: 生成 Agent 人设 -->
+      <!-- Step 02: Génération du profil d'agent -->
       <div class="step-card" :class="{ 'active': phase === 1, 'completed': phase > 1 }">
         <div class="card-header">
           <div class="step-info">
@@ -54,13 +53,11 @@
             <span v-else class="badge pending">attendez</span>
           </div>
         </div>
-
         <div class="card-content">
           <p class="api-note">POST /api/simulation/prepare</p>
           <p class="description">
            En fonction du contexte, le système invoque automatiquement des outils pour organiser les entités et les relations du graphe de connaissances, initialise des individus simulés et leur attribue des comportements et des souvenirs uniques basés sur des données du monde réel.
           </p>
-
           <!-- Profiles Stats -->
           <div v-if="profiles.length > 0" class="stats-grid">
             <div class="stat-card">
@@ -73,20 +70,18 @@
             </div>
             <div class="stat-card">
               <span class="stat-value">{{ totalTopicsCount }}</span>
-              <span class="stat-label">
-Nombre actuel de sujets liés à Reality Seed</span>
+              <span class="stat-label">Nombre actuel de sujets liés à Reality Seed</span>
             </div>
           </div>
-
           <!-- Profiles List Preview -->
           <div v-if="profiles.length > 0" class="profiles-preview">
             <div class="preview-header">
               <span class="preview-title">Le profil d'agent généré</span>
             </div>
             <div class="profiles-list">
-              <div 
-                v-for="(profile, idx) in profiles" 
-                :key="idx" 
+              <div
+                v-for="(profile, idx) in profiles"
+                :key="idx"
                 class="profile-card"
                 @click="selectProfile(profile)"
               >
@@ -99,9 +94,9 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 </div>
                 <p class="profile-bio">{{ profile.bio || 'Pas encore de profil' }}</p>
                 <div v-if="profile.interested_topics?.length" class="profile-topics">
-                  <span 
-                    v-for="topic in profile.interested_topics.slice(0, 3)" 
-                    :key="topic" 
+                  <span
+                    v-for="topic in profile.interested_topics.slice(0, 3)"
+                    :key="topic"
                     class="topic-tag"
                   >{{ topic }}</span>
                   <span v-if="profile.interested_topics.length > 3" class="topic-more">
@@ -114,7 +109,7 @@ Nombre actuel de sujets liés à Reality Seed</span>
         </div>
       </div>
 
-      <!-- Step 03: 生成双平台模拟配置 -->
+      <!-- Step 03: Génération de la configuration de simulation double plateforme -->
       <div class="step-card" :class="{ 'active': phase === 2, 'completed': phase > 2 }">
         <div class="card-header">
           <div class="step-info">
@@ -127,13 +122,12 @@ Nombre actuel de sujets liés à Reality Seed</span>
             <span v-else class="badge pending">attendez</span>
           </div>
         </div>
-
         <div class="card-content">
           <p class="api-note">POST /api/simulation/prepare</p>
           <p class="description">
             LLM configure intelligemment des paramètres tels que le flux temporel mondial, l'algorithme de recommandation, les périodes d'activité de chaque individu, la fréquence de parole et le déclenchement d'événements en fonction des besoins de la simulation et des données initiales du monde réel.
           </p>
-          
+         
           <!-- Config Preview -->
           <div v-if="simulationConfig" class="config-detail-panel">
             <!-- 时间配置 -->
@@ -141,15 +135,15 @@ Nombre actuel de sujets liés à Reality Seed</span>
               <div class="config-grid">
                 <div class="config-item">
                   <span class="config-item-label">Durée des simulations</span>
-                  <span class="config-item-value">{{ simulationConfig.time_config?.total_simulation_hours || '-' }} 小时</span>
+                  <span class="config-item-value">{{ simulationConfig.time_config?.total_simulation_hours || '-' }} heures</span>
                 </div>
                 <div class="config-item">
                   <span class="config-item-label">Durée de chaque tour</span>
-                  <span class="config-item-value">{{ simulationConfig.time_config?.minutes_per_round || '-' }} 分钟</span>
+                  <span class="config-item-value">{{ simulationConfig.time_config?.minutes_per_round || '-' }} minutes</span>
                 </div>
                 <div class="config-item">
                   <span class="config-item-label">tours totaux</span>
-                  <span class="config-item-value">{{ Math.floor((simulationConfig.time_config?.total_simulation_hours * 60 / simulationConfig.time_config?.minutes_per_round)) || '-' }} 轮</span>
+                  <span class="config-item-value">{{ Math.floor((simulationConfig.time_config?.total_simulation_hours * 60 / simulationConfig.time_config?.minutes_per_round)) || '-' }} tours</span>
                 </div>
                 <div class="config-item">
                   <span class="config-item-label">Actif toutes les heures</span>
@@ -179,17 +173,16 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 </div>
               </div>
             </div>
-
             <!-- Agent 配置 -->
             <div class="config-block">
               <div class="config-block-header">
                 <span class="config-block-title">Configuration des agents</span>
-                <span class="config-block-badge">{{ simulationConfig.agent_configs?.length || 0 }} 个</span>
+                <span class="config-block-badge">{{ simulationConfig.agent_configs?.length || 0 }}</span>
               </div>
               <div class="agents-cards">
-                <div 
-                  v-for="agent in simulationConfig.agent_configs" 
-                  :key="agent.agent_id" 
+                <div
+                  v-for="agent in simulationConfig.agent_configs"
+                  :key="agent.agent_id"
                   class="agent-card"
                 >
                   <!-- 卡片头部 -->
@@ -203,14 +196,14 @@ Nombre actuel de sujets liés à Reality Seed</span>
                       <span class="agent-stance" :class="'stance-' + agent.stance">{{ agent.stance }}</span>
                     </div>
                   </div>
-                  
+                 
                   <!-- 活跃时间轴 -->
                   <div class="agent-timeline">
                     <span class="timeline-label">période active</span>
                     <div class="mini-timeline">
-                      <div 
-                        v-for="hour in 24" 
-                        :key="hour - 1" 
+                      <div
+                        v-for="hour in 24"
+                        :key="hour - 1"
                         class="timeline-hour"
                         :class="{ 'active': agent.active_hours?.includes(hour - 1) }"
                         :title="`${hour - 1}:00`"
@@ -224,7 +217,6 @@ Nombre actuel de sujets liés à Reality Seed</span>
                       <span>24</span>
                     </div>
                   </div>
-
                   <!-- 行为参数 -->
                   <div class="agent-params">
                     <div class="param-group">
@@ -264,7 +256,6 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 </div>
               </div>
             </div>
-
             <!-- 平台配置 -->
             <div class="config-block">
               <div class="config-block-header">
@@ -327,16 +318,15 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 </div>
               </div>
             </div>
-
             <!-- LLM 配置推理 -->
             <div v-if="simulationConfig.generation_reasoning" class="config-block">
               <div class="config-block-header">
                 <span class="config-block-title">Inférence de configuration LLM</span>
               </div>
               <div class="reasoning-content">
-                <div 
-                  v-for="(reason, idx) in simulationConfig.generation_reasoning.split('|').slice(0, 2)" 
-                  :key="idx" 
+                <div
+                  v-for="(reason, idx) in simulationConfig.generation_reasoning.split('|').slice(0, 2)"
+                  :key="idx"
                   class="reasoning-item"
                 >
                   <p class="reasoning-text">{{ reason.trim() }}</p>
@@ -347,7 +337,7 @@ Nombre actuel de sujets liés à Reality Seed</span>
         </div>
       </div>
 
-      <!-- Step 04: 初始激活编排 -->
+      <!-- Step 04: Orchestration de l'activation initiale -->
       <div class="step-card" :class="{ 'active': phase === 3, 'completed': phase > 3 }">
         <div class="card-header">
           <div class="step-info">
@@ -360,13 +350,11 @@ Nombre actuel de sujets liés à Reality Seed</span>
             <span v-else class="badge pending">attendez</span>
           </div>
         </div>
-
         <div class="card-content">
           <p class="api-note">POST /api/simulation/prepare</p>
           <p class="description">
             En fonction de l'orientation narrative, les événements d'activation initiaux et les sujets tendance sont générés automatiquement pour guider l'état initial du monde simulé.
           </p>
-
           <div v-if="simulationConfig?.event_config" class="orchestration-content">
             <!-- 叙事方向 -->
             <div class="narrative-box">
@@ -385,7 +373,6 @@ Nombre actuel de sujets liés à Reality Seed</span>
               </span>
               <p class="narrative-text">{{ simulationConfig.event_config.narrative_direction }}</p>
             </div>
-
             <!-- 热点话题 -->
             <div class="topics-section">
               <span class="box-label">Premiers sujets brûlants</span>
@@ -395,7 +382,6 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 </span>
               </div>
             </div>
-
             <!-- 初始帖子流 -->
             <div class="initial-posts-section">
               <span class="box-label">séquence d'activation initiale ({{ simulationConfig.event_config.initial_posts.length }})</span>
@@ -419,7 +405,7 @@ Nombre actuel de sujets liés à Reality Seed</span>
         </div>
       </div>
 
-      <!-- Step 05: 准备完成 -->
+      <!-- Step 05: Préparation terminée -->
       <div class="step-card" :class="{ 'active': phase === 4 }">
         <div class="card-header">
           <div class="step-info">
@@ -431,17 +417,16 @@ Nombre actuel de sujets liés à Reality Seed</span>
             <span v-else class="badge pending">attendez</span>
           </div>
         </div>
-
         <div class="card-content">
           <p class="api-note">POST /api/simulation/start</p>
           <p class="description">L'environnement de simulation est prêt et vous pouvez lancer la simulation.</p>
-          
-          <!-- 模拟轮数配置 - 只有在配置生成完成且轮数计算出来后才显示 -->
+         
+          <!-- 模拟轮数配置 -->
           <div v-if="simulationConfig && autoGeneratedRounds" class="rounds-config-section">
             <div class="rounds-header">
               <div class="header-left">
                 <span class="section-title">Réglage du tour de simulation</span>
-                <span class="section-desc">FisherForce : Planification automatique et simulation de la réalité<span class="desc-highlight">{{ simulationConfig?.time_config?.total_simulation_hours || '-' }}</span> 小时，每轮代表现实 <span class="desc-highlight">{{ simulationConfig?.time_config?.minutes_per_round || '-' }}</span> 分钟时间流逝</span>
+                <span class="section-desc">FisherForce : Planification automatique et simulation de la réalité <span class="desc-highlight">{{ simulationConfig?.time_config?.total_simulation_hours || '-' }}</span> heures, chaque tour représente <span class="desc-highlight">{{ simulationConfig?.time_config?.minutes_per_round || '-' }}</span> minutes de temps réel</span>
               </div>
               <label class="switch-control">
                 <input type="checkbox" v-model="useCustomRounds">
@@ -449,24 +434,23 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 <span class="switch-label">Personnaliser</span>
               </label>
             </div>
-            
+           
             <Transition name="fade" mode="out-in">
               <div v-if="useCustomRounds" class="rounds-content custom" key="custom">
                 <div class="slider-display">
                   <div class="slider-main-value">
                     <span class="val-num">{{ customMaxRounds }}</span>
-                    <span class="val-unit">roue</span>
+                    <span class="val-unit">tours</span>
                   </div>
                   <div class="slider-meta-info">
-                    <span>Si la taille de l'agent est de 100 : le temps de traitement estimé est d'environ {{ Math.round(customMaxRounds * 0.6) }} 分钟</span>
+                    <span>Si la taille de l'agent est de 100 : le temps de traitement estimé est d'environ {{ Math.round(customMaxRounds * 0.6) }} minutes</span>
                   </div>
                 </div>
-
                 <div class="range-wrapper">
-                  <input 
-                    type="range" 
-                    v-model.number="customMaxRounds" 
-                    min="10" 
+                  <input
+                    type="range"
+                    v-model.number="customMaxRounds"
+                    min="10"
                     :max="autoGeneratedRounds"
                     step="5"
                     class="minimal-slider"
@@ -474,8 +458,8 @@ Nombre actuel de sujets liés à Reality Seed</span>
                   />
                   <div class="range-marks">
                     <span>10</span>
-                    <span 
-                      class="mark-recommend" 
+                    <span
+                      class="mark-recommend"
                       :class="{ active: customMaxRounds === 40 }"
                       @click="customMaxRounds = 40"
                       :style="{ position: 'absolute', left: `calc(${(40 - 10) / (autoGeneratedRounds - 10) * 100}% - 30px)` }"
@@ -484,12 +468,12 @@ Nombre actuel de sujets liés à Reality Seed</span>
                   </div>
                 </div>
               </div>
-              
+             
               <div v-else class="rounds-content auto" key="auto">
                 <div class="auto-info-card">
                   <div class="auto-value">
                     <span class="val-num">{{ autoGeneratedRounds }}</span>
-                    <span class="val-unit">roue</span>
+                    <span class="val-unit">tours</span>
                   </div>
                   <div class="auto-content">
                     <div class="auto-meta-row">
@@ -498,7 +482,7 @@ Nombre actuel de sujets liés à Reality Seed</span>
                           <circle cx="12" cy="12" r="10"></circle>
                           <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        Si la taille de l'agent est de 100 : Temps estimé {{ Math.round(autoGeneratedRounds * 0.6) }} 分钟
+                        Si la taille de l'agent est de 100 : Temps estimé {{ Math.round(autoGeneratedRounds * 0.6) }} minutes
                       </span>
                     </div>
                     <div class="auto-desc">
@@ -510,21 +494,19 @@ Nombre actuel de sujets liés à Reality Seed</span>
               </div>
             </Transition>
           </div>
-
           <div class="action-group dual">
-            <button 
+            <button
               class="action-btn secondary"
               @click="$emit('go-back')"
             >
               ← Retour à la construction du graphique
             </button>
-            <button 
+            <button
               class="action-btn primary"
               :disabled="phase < 4"
               @click="handleStartSimulation"
             >
-              
-             Lancer une simulation parallèle à deux mondes➝
+             Lancer une simulation parallèle à deux mondes ➝
             </button>
           </div>
         </div>
@@ -545,17 +527,17 @@ Nombre actuel de sujets liés à Reality Seed</span>
           </div>
           <button class="close-btn" @click="selectedProfile = null">×</button>
         </div>
-        
+       
         <div class="modal-body">
           <!-- 基本信息 -->
           <div class="modal-info-grid">
             <div class="info-item">
               <span class="info-label">L'âge révélé par l'événement</span>
-              <span class="info-value">{{ selectedProfile.age || '-' }} 岁</span>
+              <span class="info-value">{{ selectedProfile.age || '-' }} ans</span>
             </div>
             <div class="info-item">
-              <span class="info-label">L'âge révélé par l'événement</span>
-              <span class="info-value">{{ { male: '男', female: '女', other: '其他' }[selectedProfile.gender] || selectedProfile.gender }}</span>
+              <span class="info-label">Genre</span>
+              <span class="info-value">{{ { male: 'Homme', female: 'Femme', other: 'Autre' }[selectedProfile.gender] || selectedProfile.gender }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Pays/Région</span>
@@ -566,29 +548,26 @@ Nombre actuel de sujets liés à Reality Seed</span>
               <span class="info-value mbti">{{ selectedProfile.mbti || '-' }}</span>
             </div>
           </div>
-
           <!-- 简介 -->
           <div class="modal-section">
             <span class="section-label">Présentation du personnage</span>
             <p class="section-bio">{{ selectedProfile.bio || 'Pas encore de profil' }}</p>
           </div>
-
           <!-- 关注话题 -->
           <div class="modal-section" v-if="selectedProfile.interested_topics?.length">
             <span class="section-label">Sujets concrets liés aux semences</span>
             <div class="topics-grid">
-              <span 
-                v-for="topic in selectedProfile.interested_topics" 
-                :key="topic" 
+              <span
+                v-for="topic in selectedProfile.interested_topics"
+                :key="topic"
                 class="topic-item"
               >{{ topic }}</span>
             </div>
           </div>
-
           <!-- 详细人设 -->
           <div class="modal-section" v-if="selectedProfile.persona">
             <span class="section-label">Contexte détaillé du personnage</span>
-            
+           
             <!-- 人设维度概览 -->
             <div class="persona-dimensions">
               <div class="dimension-card">
@@ -608,7 +587,6 @@ Nombre actuel de sujets liés à Reality Seed</span>
                 <span class="dim-desc">Liens individuels et graphes d'interaction</span>
               </div>
             </div>
-
             <div class="persona-content">
               <p class="section-persona">{{ selectedProfile.persona }}</p>
             </div>
