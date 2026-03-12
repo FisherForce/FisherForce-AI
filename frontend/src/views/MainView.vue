@@ -90,8 +90,14 @@ const router = useRouter()
 const viewMode = ref('split') // graph | split | workbench
 
 // Step State
-const currentStep = ref(1) // 1: 图谱构建, 2: 环境搭建, 3: 开始模拟, 4: 报告生成, 5: 深度互动
-const stepNames = ['图谱构建', '环境搭建', '开始模拟', '报告生成', '深度互动']
+const currentStep = ref(1) // 1: Construction du graphe, 2: Configuration de l’environnement, 3: Lancement de la simulation, 4: Génération du rapport, 5: Interaction approfondie
+const stepNames = [
+  'Construction du graphe',
+  'Configuration de l’environnement',
+  'Lancement de la simulation',
+  'Génération du rapport',
+  'Interaction approfondie'
+]
 
 // Data State
 const currentProjectId = ref(route.params.projectId)
